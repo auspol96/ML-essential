@@ -123,6 +123,7 @@ High precision:
 
 ### Recall
 > “Out of all customers who actually churned, how many did we catch?”
+Recall tells us how many of the customers who actually churned were correctly found by the model.
 
 High recall:
 - Few missed churners
