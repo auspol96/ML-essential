@@ -129,7 +129,7 @@ Machine learning models like Logistic Regression:
 Work with numbers
 Cannot calculate with strings
 As a result we need to 
-# 8.1. import Encoder and Encode categorical columns in X
+## 8.1. import Encoder and Encode categorical columns in X
 ```python
 from sklearn.preprocessing import LabelEncoder
 
@@ -140,7 +140,7 @@ for col in X_encoded.columns:
         le = LabelEncoder()
         X_encoded[col] = le.fit_transform(X_encoded[col])
 ```
-# 8.2. Re-split data
+## 8.2. Re-split data
 ```python
 X_train, X_test, y_train, y_test = train_test_split(
     X_encoded,
@@ -150,7 +150,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 ```
-# 8.3. Train model again
+## 8.3. Train model again
 ```python
 model = LogisticRegression(max_iter=1000)
 model.fit(X_train, y_train)
