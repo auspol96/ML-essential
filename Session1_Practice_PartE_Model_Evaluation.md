@@ -79,6 +79,25 @@ Explanation:
 - **False Positive (FP)**: Predicted churn, but customer stayed
 - **False Negative (FN)**: Missed a customer who churned
 
+Example:
+|                | Predicted No | Predicted Yes |
+| -------------- | ------------ | ------------- |
+| **Actual No**  | **938** (TN) | **98** (FP)   |
+| **Actual Yes** | **160** (FN) | **213** (TP)  |
+
+938 True Negatives
+→ Customers who did not churn, and the model correctly said “No churn”
+
+98 False Positives
+→ Customers who did not churn, but the model wrongly said “Churn”
+
+160 False Negatives ⚠️
+→ Customers who did churn, but the model missed them
+
+213 True Positives
+→ Customers who did churn, and the model correctly identified them
+
+Note: 938 + 98 + 160 + 213 = 1,409 (total test sample)
 ---
 
 ## 5. Why False Negatives Matter in Churn Prediction
