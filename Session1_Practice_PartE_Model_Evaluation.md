@@ -156,13 +156,19 @@ precision, recall
 
 > There is always a trade-off.
 > Example
-Precision = 0.685  (≈ 68.5%)
-Recall    = 0.571  (≈ 57.1%)
+> Precision = 0.685  (≈ 68.5%)
+> Recall    = 0.571  (≈ 57.1%)
+> Precision — Very Simple Explanation
 When the model says “this customer will churn”, it is correct about 69 times out of 100.
 So:
 31% of the time, the model raises a false alarm
 Marketing may contact some customers who would not churn
 
+> Recall — Very Simple Explanation (Reinforced)
+Out of all customers who actually churned, the model only caught about 57 out of 100.
+So:
+43% of churners were missed
+These customers left without being detected
 
 ---
 
