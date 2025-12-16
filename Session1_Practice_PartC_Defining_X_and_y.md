@@ -141,8 +141,17 @@ This confirms:
 Ask yourself:
 
 - Do all X variables exist **before** churn happens?
+  What this means 
+    “Are we only using information that was available before the customer decided to leave?”
+  Why this matters
+    Machine learning is used to predict the future, not to explain the past using future information.
+    If we use information that appears after churn, the model is cheating.
 - Does y represent something we want to predict?
+  What this means
+    “Is y actually the outcome we care about, or are we predicting the wrong thing?”
 - Could any X variable accidentally reveal y?
+  Very simple explanation
+    “Does any input variable secretly contain the answer?”
 
 > These questions are critical in research methodology.
 
