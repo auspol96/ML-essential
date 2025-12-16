@@ -124,6 +124,38 @@ from sklearn.linear_model import LogisticRegression
 model = LogisticRegression(max_iter=1000)
 model.fit(X_train, y_train)
 ```
+**This will be error because:**
+Machine learning models like Logistic Regression:
+Work with numbers
+Cannot calculate with strings
+As a result we need to 
+# 8.1. import Encoder and Encode categorical columns in X
+```python
+from sklearn.preprocessing import LabelEncoder
+
+X_encoded = X.copy()
+
+for col in X_encoded.columns:
+    if X_encoded[col].dtype == 'object':
+        le = LabelEncoder()
+        X_encoded[col] = le.fit_transform(X_encoded[col])
+```
+# 8.2. Re-split data
+```python
+X_train, X_test, y_train, y_test = train_test_split(
+    X_encoded,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+```
+# 8.3. Train model again
+```python
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+
+```
 
 **What happens here:**
 - The model learns patterns from training data
