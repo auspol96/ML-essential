@@ -32,7 +32,15 @@ We now treat data **based on its type**:
 ### Categorical data
 - Example: gender, Contract, InternetService
 - Solution: **One-Hot Encoding**
+- Example
+```sql
+  Contract_Month-to-month   Contract_One year   Contract_Two year
+1                         0                   0
+0                         1                   0
+0                         0                   1
 
+```
+  
 ### Numerical data
 - Example: tenure, MonthlyCharges
 - Solution: **Scaling**
