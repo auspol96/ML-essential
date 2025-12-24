@@ -48,7 +48,28 @@ We now treat data **based on its type**:
 This prevents:
 - Fake numeric order
 - Unfair influence of large numbers
+- Example
+```sql
+| Customer | tenure | MonthlyCharges |
+| -------- | ------ | -------------- |
+| A        | 12     | 100            |
+| B        | 24     | 105            |
 
+```
+Now think like a model:
+
+Difference in tenure = 12
+
+Difference in MonthlyCharges = 5
+
+The model sees:
+
+tenure difference is more important simply because the number is larger
+
+❌ But this may not reflect real importance
+❌ Large numbers dominate learning
+
+This is called unfair influence of large numbers.
 ---
 
 ## 3. Split Data First (Very Important)
