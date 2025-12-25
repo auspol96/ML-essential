@@ -8,9 +8,16 @@ This lab compares Logistic Regression, KNN, and Decision Tree using the same dat
 ## 1. Load & Prepare Data (Minimal, Safe)
 
 ```python
+from google.colab import drive
+drive.mount('/content/drive')
+
 import pandas as pd
 
-df = pd.read_csv('/content/drive/MyDrive/Customer_data/Customer_Churn.csv')
+df = pd.read_csv(
+    '/content/drive/MyDrive/Customer_data/Customer_Churn.csv'
+)
+
+df.head()
 ```
 
 ---
@@ -27,8 +34,15 @@ X = df.drop(['Churn', 'customerID'], axis=1)
 ## 3. Fix Data Types (Important)
 
 ```python
-X['TotalCharges'] = pd.to_numeric(X['TotalCharges'], errors='coerce')
-X['TotalCharges'] = X['TotalCharges'].fillna(0)
+# Convert target to binary
+df['Churn'] = df['Churn'].map({'Yes': 1, 'No': 0})
+
+# Fix TotalCharges (important)
+df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
+df['TotalCharges'] = df['TotalCharges'].fillna(0)
+
+# Drop ID
+df = df.drop('customerID', axis=1)
 ```
 
 ---
@@ -38,9 +52,13 @@ X['TotalCharges'] = X['TotalCharges'].fillna(0)
 ```python
 from sklearn.model_selection import train_test_split
 
+X = df.drop('Churn', axis=1)
+y = df['Churn']
+
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
+    X, y, test_size=0.2, random_state=42, stratify=y
 )
+
 ```
 
 ---
@@ -73,20 +91,34 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 
 models = {
-    'Logistic Regression': LogisticRegression(max_iter=1000),
-    'KNN': KNeighborsClassifier(n_neighbors=5),
-    'Decision Tree': DecisionTreeClassifier(random_state=42)
+    "Logistic Regression": LogisticRegression(max_iter=1000),
+    "KNN": KNeighborsClassifier(n_neighbors=5),
+    "Decision Tree": DecisionTreeClassifier(max_depth=5, random_state=42)
 }
+from sklearn.metrics import accuracy_score, recall_score, confusion_matrix
 
-trained_models = {}
+results = []
 
 for name, model in models.items():
-    pipe = Pipeline([
-        ('prep', preprocessor),
+    pipe = Pipeline(steps=[
+        ('preprocess', preprocessor),
         ('model', model)
     ])
+
     pipe.fit(X_train, y_train)
-    trained_models[name] = pipe
+    y_pred = pipe.predict(X_test)
+
+    acc = accuracy_score(y_test, y_pred)
+    recall = recall_score(y_test, y_pred)
+
+    results.append({
+        "Model": name,
+        "Accuracy": round(acc, 3),
+        "Recall (Churn)": round(recall, 3)
+    })
+
+results_df = pd.DataFrame(results)
+results_df
 ```
 
 ---
