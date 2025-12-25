@@ -60,13 +60,6 @@ Check missing values and problematic columns.
 ```python
 df.isnull().sum()
 ```
-
-Check `TotalCharges` type:
-
-```python
-df['TotalCharges'].head()
-```
-
 **Question:**  
 Which columns may require cleaning before modeling?
 
