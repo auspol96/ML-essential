@@ -77,6 +77,9 @@ df['Churn'].value_counts()
 Visualization:
 
 ```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 sns.countplot(x='Churn', data=df)
 plt.title("Churn Distribution")
 plt.show()
