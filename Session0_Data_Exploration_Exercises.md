@@ -5,20 +5,19 @@ Objective: Understand the data before building any machine learning model.
 
 ---
 
-## Setup
+## Setup and load dataset:
 
 ```python
+from google.colab import drive
+drive.mount('/content/drive')
+
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 
-sns.set(style="whitegrid")
-```
+df = pd.read_csv(
+    '/content/drive/MyDrive/Customer_data/Customer_Churn.csv'
+)
 
-Load the dataset:
-
-```python
-df = pd.read_csv("Telco-Customer-Churn.csv")
+df.head()
 ```
 
 ---
