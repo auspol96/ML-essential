@@ -98,6 +98,15 @@ Compare tenure between churned and non-churned customers.
 ```python
 df.groupby('Churn')['tenure'].mean()
 ```
+Example.
+Churn
+No     37.57
+Yes    17.98
+
+Customers who did NOT churn
+Stayed on average ~37.6 months
+Customers who DID churn
+Stayed on average only ~18 months
 
 Visualization:
 
