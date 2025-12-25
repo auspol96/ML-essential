@@ -126,19 +126,29 @@ results_df
 ## 7. Confusion Matrix (All Models)
 
 ```python
+from sklearn.pipeline import Pipeline
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-for name, model in trained_models.items():
-    y_pred = model.predict(X_test)
-    cm = confusion_matrix(y_test, y_pred, labels=['No', 'Yes'])
-
+for name, model in models.items():
+    pipe = Pipeline(steps=[
+        ('preprocess', preprocessor),
+        ('model', model)
+    ])
+    
+    pipe.fit(X_train, y_train)
+    y_pred = pipe.predict(X_test)
+    
+    cm = confusion_matrix(y_test, y_pred)
+    
+    plt.figure(figsize=(4, 3))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
-    plt.title(f'{name} – Confusion Matrix')
-    plt.xlabel('Predicted')
-    plt.ylabel('Actual')
+    plt.title(f"{name} – Confusion Matrix")
+    plt.xlabel("Predicted")
+    plt.ylabel("Actual")
     plt.show()
+
 ```
 
 ---
