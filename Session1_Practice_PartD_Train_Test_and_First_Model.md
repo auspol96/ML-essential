@@ -121,7 +121,7 @@ from sklearn.linear_model import LogisticRegression
 ## 8. Train the First Model
 
 ```python
-model = LogisticRegression(max_iter=1000)
+model = LogisticRegression(max_iter=5000)
 model.fit(X_train, y_train)
 ```
 **This will be error because:**
