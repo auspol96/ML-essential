@@ -152,7 +152,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 ```
 ## 8.3. Train model again
 ```python
-model = LogisticRegression(max_iter=1000)
+model = LogisticRegression(max_iter=5000)
 model.fit(X_train, y_train)
 
 ```
@@ -167,7 +167,7 @@ model.fit(X_train, y_train)
 
 ```python
 y_pred = model.predict(X_test)
-```
+```เอาข้อมูลที่โมเดล ไม่เคยเห็นมาก่อน ให้มันลองทำนาย
 
 **Important:**
 - Predictions are made on **unseen data**
