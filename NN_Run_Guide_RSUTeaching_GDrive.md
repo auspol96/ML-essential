@@ -47,11 +47,19 @@ df.head()
 สมมติว่า target column ชื่อ `churn` (0/1)
 
 ```python
-# แยก X และ y
-y = df["churn"].astype(int)
-X = df.drop(columns=["churn"])
+# Clean column names first (safe practice)
+df.columns = df.columns.str.strip()
 
-# ถ้ามีข้อมูลประเภทข้อความ ให้ทำ encoding
+# Target
+y = df["Churn"]
+
+# Convert Yes/No → 1/0
+y = y.map({"Yes": 1, "No": 0})
+
+# Features
+X = df.drop(columns=["Churn"])
+
+# Convert categorical variables
 X = pd.get_dummies(X, drop_first=True)
 ```
 
